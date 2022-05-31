@@ -1,13 +1,6 @@
 @tailwind components;
 @layer components {
-  .card {
-    @apply p-1;
-  }
-  .card-btn {
-    @apply w-12 h-12 bg-primary-300 text-sm rounded-sm cursor-pointer font-bold text-transparent;
-    @apply hover:opacity-40 focus:outline-none transition duration-300 ease-in-out;
-  }
-  .reveal-card {
-    @apply bg-primary-200 opacity-20 text-white text-opacity-100;
+  .back, .front{
+    @apply w-24 h-24 rounded-sm object-cover;
   }
 }
