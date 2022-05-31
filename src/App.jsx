@@ -15,7 +15,7 @@ function App() {
         <h1 className="app-title">Zelda's Memory Card Game</h1>
         <div className="memory-game">
           <section className="mg-board">
-            <MemoryTable rowNumber={4} />
+            <MemoryTable rowNumber={4} limitPerRow={4}/>
           </section>
           <section className="mg-stadistics">
             <div>

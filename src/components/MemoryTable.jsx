@@ -3,36 +3,28 @@ import "../styles/MemoryTable.css";
 // Components
 import MemoryCard from "./MemoryCard";
 
+const MemoryTable = ({ rowNumber, limitPerRow }) => {
+  var number = 1;
 
-const MemoryTable = (props) => {
+  const createTable = () => {
+    const table = [];
+    for (let i = 1; i <= rowNumber; i++) {
+      table.push(<tr key={i}>{createCards(rowNumber, limitPerRow)}</tr>);
+    }
+    return table;
+  };
+  const createCards = (limit) => {
+    let cards = [];
+    for (let i = 1; i <= limit; i++) {
+      cards.push(<MemoryCard key={i} number={number} />);
+      number++;
+    }
+    return cards;
+  };
+
   return (
     <table className="mg-table">
-      <tbody className="mg-tbody">
-        <tr>
-          <MemoryCard number={"1"} />
-          <MemoryCard number={"2"} />
-          <MemoryCard number={"3"} />
-          <MemoryCard number={"4"} />
-        </tr>
-        <tr>
-          <MemoryCard number={"5"} />
-          <MemoryCard number={"6"} />
-          <MemoryCard number={"7"} />
-          <MemoryCard number={"8"} />
-        </tr>
-        <tr>
-          <MemoryCard number={"9"} />
-          <MemoryCard number={"12"} />
-          <MemoryCard number={"13"} />
-          <MemoryCard number={"14"} />
-        </tr>
-        <tr>
-          <MemoryCard number={"15"} />
-          <MemoryCard number={"16"} />
-          <MemoryCard number={"17"} />
-          <MemoryCard number={"18"} />
-        </tr>
-      </tbody>
+      <tbody className="mg-tbody">{createTable()}</tbody>
     </table>
   );
 };
