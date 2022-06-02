@@ -11,25 +11,27 @@ import cover from "../images/cover.png";
 // Styles
 import "../styles/MemoryCard.css";
 
-const MemoryCard = ({ id, img }) => {
+const MemoryCard = ({ card, handleChoice, flipped, disabled }) => {
   const [revealed, setRevealed] = useState(false);
   const dispatch = useDispatch();
 
   function handleClick() {
-    console.log(`Card ${number} clicked`);
-    setRevealed(true);
-    dispatch(increment());
+    if (!disabled) {
+      handleChoice(card);
+    }
   }
 
   return (
     <>
       <div className="card">
-        <div
-          className={`card-btn ${revealed ? "reveal-card" : ""}`}
-          onClick={handleClick}
-        >
-          <img className="front" src={img} alt="card front" />
-          <img className="back" src={cover} alt="card back" />
+        <div className={`card-btn ${flipped ? "flipped" : ""}`}>
+          <img className="front" src={card.src} alt="card front" />
+          <img
+            className="back"
+            src={cover}
+            alt="card back"
+            onClick={handleClick}
+          />
         </div>
       </div>
     </>
