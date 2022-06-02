@@ -7,8 +7,11 @@ import { useSelector } from "react-redux";
 // Styles
 import "./styles/app.css";
 
-// Icons
+// Images
 import CardImages from "./images/CardImages";
+
+// Sounds
+import GameSounds from "./sounds/GameSounds";
 
 // Components
 import MemoryCard from "./components/MemoryCard";
@@ -48,6 +51,7 @@ function App() {
     if (choiceOne && choiceTwo) {
       setIsDisable(true);
       if (choiceOne.src === choiceTwo.src) {
+        GameSounds.Match.play();
         console.log("these cards match!");
         setCards((prevCards) => {
           return prevCards.map((card) => {
@@ -63,6 +67,7 @@ function App() {
       } else {
         console.log("these cards don't match!");
         setTimeout(() => {
+          GameSounds.Error.play();
           resetTurn();
         }, 1000);
       }
