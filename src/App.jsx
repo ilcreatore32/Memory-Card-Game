@@ -19,6 +19,7 @@ import MemoryCard from "./components/MemoryCard";
 function App() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
+  const [isCompleted, setIsCompleted] = useState(false);
   const [isDisable, setIsDisable] = useState(false);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
@@ -43,6 +44,7 @@ function App() {
   const resetTurn = () => {
     setChoiceOne(null);
     setChoiceTwo(null);
+    isGameCompleted();
     setTurns((prevTurns) => prevTurns + 1);
     setIsDisable(false);
   };
@@ -51,8 +53,8 @@ function App() {
     if (choiceOne && choiceTwo) {
       setIsDisable(true);
       if (choiceOne.src === choiceTwo.src) {
+        // These cards match!
         GameSounds.Match.play();
-        console.log("these cards match!");
         setCards((prevCards) => {
           return prevCards.map((card) => {
             if (card.src === choiceOne.src && card.src === choiceTwo.src) {
@@ -65,7 +67,7 @@ function App() {
         });
         resetTurn();
       } else {
-        console.log("these cards don't match!");
+        // These cards don't match!
         setTimeout(() => {
           GameSounds.Error.play();
           resetTurn();
@@ -73,6 +75,20 @@ function App() {
       }
     }
   }, [choiceOne, choiceTwo]);
+
+  // Check if ALL cards are true
+  const isGameCompleted = () => {
+
+    let isAllMatch = cards.every(card => card.matched === true);
+
+    if (isAllMatch) {
+      setIsCompleted(true);
+    } else {
+      setIsCompleted(false);
+    }
+
+    console.log(isAllMatch);
+  };
 
   // Start the game automatically
   useEffect(() => {
