@@ -17,7 +17,7 @@ import GameSounds from "./sounds/GameSounds";
 import MemoryCard from "./components/MemoryCard";
 
 function App() {
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState(null);
   const [turns, setTurns] = useState(0);
   const [isCompleted, setIsCompleted] = useState(false);
   const [isDisable, setIsDisable] = useState(false);
@@ -44,7 +44,6 @@ function App() {
   const resetTurn = () => {
     setChoiceOne(null);
     setChoiceTwo(null);
-    isGameCompleted();
     setTurns((prevTurns) => prevTurns + 1);
     setIsDisable(false);
   };
@@ -74,15 +73,17 @@ function App() {
         }, 1000);
       }
     }
+    isGameCompleted();
   }, [choiceOne, choiceTwo]);
 
   // Check if ALL cards are true
   const isGameCompleted = () => {
 
-    let isAllMatch = cards.every(card => card.matched === true);
+    let isAllMatch = cards?.every((card) => card.matched === true);
 
     if (isAllMatch) {
       setIsCompleted(true);
+      window.alert("You won!");
     } else {
       setIsCompleted(false);
     }
@@ -106,7 +107,7 @@ function App() {
         </header>
         <section className="memory-game">
           <div className="card-grid">
-            {cards.map((card) => {
+            {cards?.map((card) => {
               let isFlippled =
                 card === choiceOne || card === choiceTwo || card.matched;
               return (
