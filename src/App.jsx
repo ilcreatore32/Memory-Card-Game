@@ -15,14 +15,28 @@ import GameSounds from "./sounds/GameSounds";
 
 // Components
 import MemoryCard from "./components/MemoryCard";
+import Modal from "./components/Modal";
 
 function App() {
+  // Cards Array
   const [cards, setCards] = useState(null);
+  // Count of pair cards flipped
   const [turns, setTurns] = useState(0);
+  // Winning boolean
   const [isCompleted, setIsCompleted] = useState(false);
+  // Modal boolean
+  const [show, setShow] = useState(false);
   const [isDisable, setIsDisable] = useState(false);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
+
+  const handleShow = () => {
+    setShow(true);
+  };
+
+  const handleClose = () => {
+    setShow(false)
+  }
 
   // Shuffle the images
   const shuffleCards = () => {
@@ -83,7 +97,7 @@ function App() {
 
     if (isAllMatch) {
       setIsCompleted(true);
-      window.alert("You won!");
+      handleShow();
     } else {
       setIsCompleted(false);
     }
@@ -122,6 +136,12 @@ function App() {
             })}
           </div>
         </section>
+        <Modal
+          show={show}
+          turns={turns}
+          shuffleCards={shuffleCards}
+          handleClose={handleClose}
+        />
         <p className="mt-3 text-center text-white">Turns: {turns}</p>
       </main>
     </>
