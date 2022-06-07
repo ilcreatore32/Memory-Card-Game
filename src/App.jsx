@@ -98,6 +98,7 @@ function App() {
     if (isAllMatch) {
       setIsCompleted(true);
       handleShow();
+      GameSounds.Winning.play();
     } else {
       setIsCompleted(false);
     }
