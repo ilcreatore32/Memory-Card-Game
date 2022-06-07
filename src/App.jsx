@@ -35,8 +35,8 @@ function App() {
   };
 
   const handleClose = () => {
-    setShow(false)
-  }
+    setShow(false);
+  };
 
   // Shuffle the images
   const shuffleCards = () => {
@@ -92,7 +92,6 @@ function App() {
 
   // Check if ALL cards are true
   const isGameCompleted = () => {
-
     let isAllMatch = cards?.every((card) => card.matched === true);
 
     if (isAllMatch) {
@@ -116,34 +115,40 @@ function App() {
       <main>
         <header className="header">
           <h1 className="app-title">Zelda's Memory Card Game</h1>
-          <button className="app-btn" onClick={shuffleCards}>
-            New Game
-          </button>
         </header>
-        <section className="memory-game">
-          <div className="card-grid">
-            {cards?.map((card) => {
-              let isFlippled =
-                card === choiceOne || card === choiceTwo || card.matched;
-              return (
-                <MemoryCard
-                  key={card.id}
-                  card={card}
-                  handleChoice={handleChoice}
-                  flipped={isFlippled}
-                  disabled={isDisable}
-                />
-              );
-            })}
-          </div>
-        </section>
+        <div className="game-board">
+          <section className="game-stadistics">
+            <button className="app-btn" onClick={shuffleCards}>
+              New Game
+            </button>
+            <p className="mt-1 text-center text-white">Tiempo: 30s</p>
+            <p className="mt-1 text-center text-white">Turns: {turns}</p>
+            <p className="mt-1 text-center text-white">Puntuación: 300 pts</p>
+          </section>
+          <section className="memory-game">
+            <div className="card-grid">
+              {cards?.map((card) => {
+                let isFlippled =
+                  card === choiceOne || card === choiceTwo || card.matched;
+                return (
+                  <MemoryCard
+                    key={card.id}
+                    card={card}
+                    handleChoice={handleChoice}
+                    flipped={isFlippled}
+                    disabled={isDisable}
+                  />
+                );
+              })}
+            </div>
+          </section>
+        </div>
         <Modal
           show={show}
           turns={turns}
           shuffleCards={shuffleCards}
           handleClose={handleClose}
         />
-        <p className="mt-3 text-center text-white">Turns: {turns}</p>
       </main>
     </>
   );

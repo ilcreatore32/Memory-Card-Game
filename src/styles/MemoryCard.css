@@ -5,7 +5,8 @@
   }
   .back,
   .front {
-    @apply w-24 h-24 rounded-sm object-cover border-2 border-secondary-400 border-opacity-50;
+    max-width: 120px;
+    @apply w-full h-full rounded-sm object-cover border-2 border-secondary-400 border-opacity-50;
   }
 
   .front {
