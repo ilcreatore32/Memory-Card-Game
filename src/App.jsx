@@ -22,6 +22,8 @@ function App() {
   const [cards, setCards] = useState(null);
   // Count of pair cards flipped
   const [turns, setTurns] = useState(0);
+  // Game Score
+  const [score, setScore] = useState(0);
   // Winning boolean
   const [isCompleted, setIsCompleted] = useState(false);
   // Modal boolean
@@ -47,6 +49,7 @@ function App() {
     setChoiceTwo(null);
     setCards(shuffledCards);
     setTurns(0);
+    setScore(0);
   };
 
   // HandleChoice
@@ -72,6 +75,7 @@ function App() {
           return prevCards.map((card) => {
             if (card.src === choiceOne.src && card.src === choiceTwo.src) {
               card.matched = true;
+              setScore(score + 100);
               return card;
             } else {
               return card;
@@ -83,6 +87,7 @@ function App() {
         // These cards don't match!
         setTimeout(() => {
           GameSounds.Error.play();
+          setScore(score - 50);
           resetTurn();
         }, 1000);
       }
@@ -101,8 +106,6 @@ function App() {
     } else {
       setIsCompleted(false);
     }
-
-    console.log(isAllMatch);
   };
 
   // Start the game automatically
@@ -123,7 +126,9 @@ function App() {
             </button>
             <p className="mt-1 text-center text-white">Tiempo: 30s</p>
             <p className="mt-1 text-center text-white">Turns: {turns}</p>
-            <p className="mt-1 text-center text-white">Puntuación: 300 pts</p>
+            <p className="mt-1 text-center text-white">
+              Puntuación: {score} pts
+            </p>
           </section>
           <section className="memory-game">
             <div className="card-grid">
@@ -146,6 +151,7 @@ function App() {
         <Modal
           show={show}
           turns={turns}
+          score={score}
           shuffleCards={shuffleCards}
           handleClose={handleClose}
         />

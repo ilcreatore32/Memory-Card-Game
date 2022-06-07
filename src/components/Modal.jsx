@@ -1,6 +1,12 @@
 import React from "react";
 
-export default function Modal({ show, turns, handleClose, shuffleCards }) {
+export default function Modal({
+  show,
+  turns,
+  score,
+  handleClose,
+  shuffleCards,
+}) {
   return (
     <>
       {show ? (
@@ -24,9 +30,9 @@ export default function Modal({ show, turns, handleClose, shuffleCards }) {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    Congratulations! You have completed the game in Xseconds and{" "}
-                    {turns} turns. You can play again by clicking the button
-                    below.
+                    Congratulations! You have completed the game in Xseconds
+                    with {score} points and {turns} turns. You can play again by
+                    clicking the button below.
                   </p>
                 </div>
                 {/*footer*/}
