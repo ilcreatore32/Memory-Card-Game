@@ -40,6 +40,7 @@ function App() {
     } else {
       setTimeout(() => {
         setTimer(timer - 1);
+        timer <= 15 ? GameSounds.Lowtime.play() : null;
       }, 1000);
     }
   };
@@ -146,8 +147,17 @@ function App() {
         </header>
         <div className="game-board">
           <section className="game-stadistics">
-            <button className="app-btn" onClick={shuffleCards}>New Game</button>
-            <p className="mt-1 text-center text-white">Tiempo: {timer}s</p>
+            <button className="app-btn" onClick={shuffleCards}>
+              New Game
+            </button>
+            <p className="mt-1 text-center text-white">
+              Tiempo:{" "}
+              <span
+                className={timer <= 15 ? "text-red-500 animate-pulse" : null}
+              >
+                {timer}s
+              </span>
+            </p>
             <p className="mt-1 text-center text-white">Turns: {turns}</p>
             <p className="mt-1 text-center text-white">
               Puntuación: {score} pts
