@@ -87,7 +87,7 @@ function App() {
         // These cards don't match!
         setTimeout(() => {
           GameSounds.Error.play();
-          setScore(score - 50);
+          setScore(score - 25);
           resetTurn();
         }, 1000);
       }
