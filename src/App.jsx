@@ -63,6 +63,7 @@ function App() {
     setCards(shuffledCards);
     setTurns(0);
     setScore(0);
+    setIsDisable(false);
     setTimer(60);
     setIsCompleted(false);
     setTimeout(() => {
@@ -133,7 +134,7 @@ function App() {
 
   useEffect(() => {
     if (timer <= 0) {
-      return;
+      setIsDisable(true);
     } else {
       timing();
     }
