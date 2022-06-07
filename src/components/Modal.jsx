@@ -4,10 +4,11 @@ export default function Modal({
   show,
   turns,
   score,
+  time,
   handleClose,
   shuffleCards,
 }) {
-  
+
   const playAgain = () => {
     handleClose();
     shuffleCards();
@@ -36,7 +37,7 @@ export default function Modal({
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    Congratulations! You have completed the game in Xseconds
+                    Congratulations! You have completed the game in {time} seconds
                     with {score} points and {turns} turns. You can play again by
                     clicking the button below.
                   </p>

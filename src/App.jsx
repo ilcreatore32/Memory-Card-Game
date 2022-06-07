@@ -24,6 +24,8 @@ function App() {
   const [turns, setTurns] = useState(0);
   // Game Score
   const [score, setScore] = useState(0);
+  // Game Timer
+  const [timer, setTimer] = useState(60);
   // Winning boolean
   const [isCompleted, setIsCompleted] = useState(false);
   // Modal boolean
@@ -31,6 +33,16 @@ function App() {
   const [isDisable, setIsDisable] = useState(false);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
+
+  const timing = () => {
+    if (timer <= 0 || isCompleted === true) {
+      return;
+    } else {
+      setTimeout(() => {
+        setTimer(timer - 1);
+      }, 1000);
+    }
+  };
 
   const handleShow = () => {
     setShow(true);
@@ -50,6 +62,11 @@ function App() {
     setCards(shuffledCards);
     setTurns(0);
     setScore(0);
+    setTimer(60);
+    setIsCompleted(false);
+    setTimeout(() => {
+      timing();
+    }, 1000);
   };
 
   // HandleChoice
@@ -113,6 +130,14 @@ function App() {
     shuffleCards();
   }, []);
 
+  useEffect(() => {
+    if (timer <= 0) {
+      return;
+    } else {
+      timing();
+    }
+  }, [timer]);
+
   return (
     <>
       <main>
@@ -121,10 +146,8 @@ function App() {
         </header>
         <div className="game-board">
           <section className="game-stadistics">
-            <button className="app-btn" onClick={shuffleCards}>
-              New Game
-            </button>
-            <p className="mt-1 text-center text-white">Tiempo: 30s</p>
+            <button className="app-btn" onClick={shuffleCards}>New Game</button>
+            <p className="mt-1 text-center text-white">Tiempo: {timer}s</p>
             <p className="mt-1 text-center text-white">Turns: {turns}</p>
             <p className="mt-1 text-center text-white">
               Puntuación: {score} pts
@@ -150,6 +173,7 @@ function App() {
         </div>
         <Modal
           show={show}
+          time={timer}
           turns={turns}
           score={score}
           shuffleCards={shuffleCards}
