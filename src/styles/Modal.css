@@ -20,6 +20,12 @@
   .modal-title {
     @apply text-3xl font-semibold;
   }
+  .close-modal-btn {
+    @apply p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none;
+  }
+  .close-icon {
+    @apply bg-transparent text-secondary-400 h-6 w-6 text-2xl block outline-none focus:outline-none cursor-pointer;
+  }
   .modal-body {
     @apply relative p-6 flex-auto;
     @apply secondary-border;
@@ -28,7 +34,7 @@
     @apply my-4 text-slate-50 text-lg leading-relaxed;
   }
   .text-relevant {
-    @apply text-secondary-400 mx-2 animate-bounce;
+    @apply text-secondary-400 mx-2;
   }
   .modal-footer {
     @apply flex items-center justify-end p-6 rounded-b;

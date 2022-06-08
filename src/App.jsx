@@ -16,6 +16,8 @@ import GameSounds from "./sounds/GameSounds";
 // Components
 import MemoryCard from "./components/MemoryCard";
 import WinningModal from "./components/WinningModal";
+import LoseModal from "./components/LoseModal";
+
 
 function App() {
   // Cards Array
@@ -28,8 +30,10 @@ function App() {
   const [timer, setTimer] = useState(60);
   // Winning boolean
   const [isCompleted, setIsCompleted] = useState(false);
-  // Modal boolean
-  const [show, setShow] = useState(false);
+  // Modal booleans
+  const [showWin, setShowWin] = useState(false);
+  const [showLose, setShowLose] = useState(false);
+
   const [isDisable, setIsDisable] = useState(false);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
@@ -45,12 +49,9 @@ function App() {
     }
   };
 
-  const handleShow = () => {
-    setShow(true);
-  };
-
   const handleClose = () => {
-    setShow(false);
+    setShowWin(false);
+    setShowLose(false);
   };
 
   // Shuffle the images
@@ -120,7 +121,7 @@ function App() {
 
     if (isAllMatch) {
       setIsCompleted(true);
-      handleShow();
+      setShowWin(true);
       GameSounds.Winning.play();
     } else {
       setIsCompleted(false);
@@ -135,6 +136,7 @@ function App() {
   useEffect(() => {
     if (timer <= 0) {
       setIsDisable(true);
+      setShowLose(true);
     } else {
       timing();
     }
@@ -183,10 +185,15 @@ function App() {
           </section>
         </div>
         <WinningModal
-          show={show}
+          show={showWin}
           time={timer}
           turns={turns}
           score={score}
+          shuffleCards={shuffleCards}
+          handleClose={handleClose}
+        />
+        <LoseModal
+          show={showLose}
           shuffleCards={shuffleCards}
           handleClose={handleClose}
         />

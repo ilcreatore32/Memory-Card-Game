@@ -5,9 +5,6 @@ import "../styles/Modal.css";
 
 export default function WinningModal({
   show,
-  turns,
-  score,
-  time,
   handleClose,
   shuffleCards,
 }) {
@@ -24,23 +21,14 @@ export default function WinningModal({
             <div className="modal">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h3 className="modal-title">Congratulations!</h3>
-                  <button
-                    className="close-modal-btn"
-                    onClick={handleClose}
-                  >
-                    <span className="close-icon">
-                      x
-                    </span>
+                  <h3 className="modal-title">Sorry, you lose</h3>
+                  <button className="close-modal-btn" onClick={handleClose}>
+                    <span className="close-icon">x</span>
                   </button>
                 </div>
                 <div className="modal-body">
                   <p className="modal-message">
-                    You've completed the game in the last
-                    <span className="text-relevant">{time}</span>seconds with
-                    <span className="text-relevant">{score}</span>points and{" "}
-                    <span className="text-relevant">{turns}</span>turns. You can
-                    play again by clicking the button below.
+                    Try again by clicking the nutton below, good luck.
                   </p>
                 </div>
                 <div className="modal-footer">
