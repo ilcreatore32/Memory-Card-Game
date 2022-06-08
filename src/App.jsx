@@ -15,7 +15,7 @@ import GameSounds from "./sounds/GameSounds";
 
 // Components
 import MemoryCard from "./components/MemoryCard";
-import Modal from "./components/Modal";
+import WinningModal from "./components/WinningModal";
 
 function App() {
   // Cards Array
@@ -182,7 +182,7 @@ function App() {
             </div>
           </section>
         </div>
-        <Modal
+        <WinningModal
           show={show}
           time={timer}
           turns={turns}

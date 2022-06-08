@@ -1,0 +1,45 @@
+@tailwind components;
+@layer components {
+  .backdrop {
+    @apply opacity-70 fixed inset-0 z-40 bg-black;
+  }
+  .modal-container {
+    @apply justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none;
+  }
+  .modal {
+    @apply relative w-auto m-6 max-w-3xl;
+  }
+  .modal-content {
+    background-color: #103644;
+    @apply border-0 rounded-lg shadow-lg relative flex flex-col w-full outline-none focus:outline-none;
+  }
+  .modal-header {
+    @apply flex items-start justify-between p-5 text-emerald-400 rounded-t;
+    @apply secondary-border;
+  }
+  .modal-title {
+    @apply text-3xl font-semibold;
+  }
+  .modal-body {
+    @apply relative p-6 flex-auto;
+    @apply secondary-border;
+  }
+  .modal-message {
+    @apply my-4 text-slate-50 text-lg leading-relaxed;
+  }
+  .text-relevant {
+    @apply text-secondary-400 mx-2 animate-bounce;
+  }
+  .modal-footer {
+    @apply flex items-center justify-end p-6 rounded-b;
+  }
+  .secondary-border {
+    @apply border-b border-solid border-secondary-400 border-opacity-60;
+  }
+  .play-again {
+    @apply text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150;
+  }
+  .close {
+    @apply text-secondary-400  font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150;
+  }
+}
