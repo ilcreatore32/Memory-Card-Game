@@ -28,7 +28,7 @@ export default function WinningModal({
                 </div>
                 <div className="modal-body">
                   <p className="modal-message">
-                    Try again by clicking the nutton below, good luck.
+                    Try again by clicking the button below, good luck.
                   </p>
                 </div>
                 <div className="modal-footer">

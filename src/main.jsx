@@ -18,7 +18,7 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/Memory-Card-Game/" element={<App />}></Route>
+          <Route path="/Memory-Card-Game" element={<App />}></Route>
         </Routes>
       </BrowserRouter>
     </Provider>
